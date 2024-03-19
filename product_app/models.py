@@ -22,7 +22,7 @@ class Notebook(models.Model):
     class Meta:
         verbose_name = 'Ноутбук'
         verbose_name_plural = 'Ноутбуки'
-        db_table = 'Сводка по ноутбукам'
+
 
     def __str__(self):
         return f'{self.title} | {self.price}'

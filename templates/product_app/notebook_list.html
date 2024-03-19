@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+
+{% block content %}
+{% if data %}
+    {% for note in data %}
+        <a href="{% url 'notebook_detail' note.id %}"><b>{{ note.title }}</b><i>{{ note.price }}</i></a>
+        <br>
+      
+    {% endfor %}
+        
+    {% else %}
+    <h3>Нет записей</h3>
+{% endif %}
+
+{% endblock %}
