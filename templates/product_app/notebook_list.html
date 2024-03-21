@@ -4,9 +4,31 @@
 
 
 {% block content %}
-{% if data %}
-    {% for note in data %}
-        <a href="{% url 'notebook_detail' note.id %}"><b>{{ note.title }}</b><i>{{ note.price }}</i></a>
+    
+    <div class="album py-5 bg-body-tertiary">
+    <div class="container">
+
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+          {% if page_obj %}
+    {% for note in page_obj %}
+        
+        <div class="col">
+          <div class="card shadow-sm">
+               {% for img in note.images.all|slice:":1" %}
+            <img src="{{ img }}" height="300" alt="none">
+                   {% endfor %}
+            <div class="card-body">
+              <p class="card-text">{{ note.title | truncatewords:5 }}</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <a href="{% url 'notebook_detail' note.id %}" type="button" class="btn btn-success">Выбрать</a>
+                </div>
+                <small class="text-body-secondary" style="front-family: Arial; front-size: 20px">{{ note.price}} BYN</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        
         <br>
       
     {% endfor %}
@@ -15,4 +37,30 @@
     <h3>Нет записей</h3>
 {% endif %}
 
+
+    
+        
+        
+      </div>
+    </div>
+  </div>
+
+<div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+    
 {% endblock %}
