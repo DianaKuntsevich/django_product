@@ -3,63 +3,114 @@
 
 {% block content %}
     
-<section class="w-100 p-4" style="background-color: crimson; border-radius: 1rem 1rem 0 0;" >
-    <div class="row justify-content-center">
-        <div class="col-md-8 col-lg-6 col-xl-5">
-            <div class="card text-black">
-            
-            <div id="carouselExampleIndicators" class="carousel slide" data-bs="carousel">
-  <div class="carousel-indicators">
-      {% for image in data.images.all %}
-          <li data-bs-target="carouselExampleIndicators" data-bs-slide-to="{{ forloop.counter0 }}" {% if forloop.first %} class="active" {% endif %}></li>
-      {% endfor %}
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-  </div>
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="..." class="d-block w-100" alt="...">
-    </div>
-    <div class="carousel-item">
-      <img src="..." class="d-block w-100" alt="...">
-    </div>
-    <div class="carousel-item">
-      <img src="..." class="d-block w-100" alt="...">
-    </div>
-  </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Предыдущий</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Следующий</span>
-  </button>
-</div>
+        <section class="w-100 p-4" style="background-color: lightcoral; border-radius: 1rem 1rem 0 0;" >
+            <div class="row justify-content-center">
+                <div class="col-md-8 col-lg-6 col-xl-5">
+                    <div class="card text-black">
+                    
+                    <div id="carouselExampleIndicators" class="carousel slide" data-bs="carousel">
+          <ul class="carousel-indicators">
+              {% for image in data.images.all %}
+                  <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ forloop.counter0 }}" {% if forloop.first %} class="active" {% endif %}></li>
+              {% endfor %}
+ 
+          </ul>
+          <div class="carousel-inner">
+              {% for image in data.images.all %}
+            <div class="carousel-item {% if forloop.first %} active {% endif %}">
+              <img src="{{ image.image }}" class="d-block w-100" alt="None" height="500">
+            </div>
+            {% endfor %}
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Предыдущий</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Следующий</span>
+          </button>
+        </div>
             
                 <div class="card-body">
                     <div class="text-center">
                         <h5 class="card-title">{{ data.title }}</h5>
                         <p class="text-muted md-4">{{ data.description }}</p>
-                        
                     </div>
+                
                     <div>
                         {% if data.producer %}
-                            <div class="d-flex justify-content-between"></div>
+                            <div class="d-flex justify-content-between">
                             <span>Производитель</span><span>{{ data.producer }}</span>
+                            </div>
                         {% endif %}
                     
                         {% if data.diagonal %}
-                            <div class="d-flex justify-content-between"></div>
+                            <div class="d-flex justify-content-between">
                             <span>Диагональ экрана</span><span>{{ data.diagonal }}</span>
+                            </div>
                         {% endif %}
+                    
+                        {% if data.resolution %}
+                            <div class="d-flex justify-content-between">
+                            <span>Разрешение экрана</span><span>{{ data.resolution }}</span>
+                            </div>
+                        {% endif %}
+                        
+                        {% if data.os %}
+                            <div class="d-flex justify-content-between">
+                            <span>Операционная система</span><span>{{ data.os }}</span>
+                            </div>
+                        {% endif %}
+                    
+                        {% if data.processor %}
+                            <div class="d-flex justify-content-between">
+                            <span>Процессор</span><span>{{ data.processor }}</span>
+                            </div>
+                        {% endif %}
+                    
+                        {% if data.ram %}
+                            <div class="d-flex justify-content-between">
+                            <span>Оперативная память</span><span>{{ data.ram }}</span>
+                            </div>
+                        {% endif %}
+                    
+                        {% if data.video_card %}
+                            <div class="d-flex justify-content-between">
+                            <span>Тип видеокарты</span><span>{{ data.video_card }}</span>
+                            </div>
+                        {% endif %}
+                    
+                        {% if data.hdd_type %}
+                            <div class="d-flex justify-content-between">
+                            <span>Тип накопителя</span><span>{{ data.hdd_type }}</span>
+                            </div>
+                        {% endif %}
+                    
+                        {% if data.hdd_volume %}
+                            <div class="d-flex justify-content-between">
+                            <span>Ёмкость накопителя</span><span>{{ data.hdd_volume }}</span>
+                            </div>
+                        {% endif %}
+                    
+                        {% if data.battery %}
+                            <div class="d-flex justify-content-between">
+                            <span>Время автономной работы</span><span>{{ data.battery }}</span>
+                            </div>
+                        {% endif %}
+                    
+                        {% if data.condition %}
+                            <div class="d-flex justify-content-between">
+                            <span>Состояние</span><span>{{ data.condition }}</span>
+                            </div>
+                        {% endif %}
+                    
                     </div>
                 <div class="d-flex justify-content-between total front-weight-bold mt-4">
                     <span>Цена</span><span>{{ data.price }}</span>
                 </div>
                 <div class="d-grid">
-                <a href="{{ data.link }}" class="btn btn-primary" type="button"></a>
+                <a href="{{ data.link }}" class="btn btn-primary" type="button">Купить</a>
                 </div>
                 </div>
                 
