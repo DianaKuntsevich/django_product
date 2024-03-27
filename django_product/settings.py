@@ -50,9 +50,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'debug_toolbar',
+    'rest_framework',
+    'django_filters',
 
     "product_app.apps.ProductAppConfig",
-    'user.apps.UserConfig'
+    'user.apps.UserConfig',
+    'api.apps.ApiConfig',
 ]
 
 MIDDLEWARE = [
@@ -151,3 +154,9 @@ INTERNAL_IPS = [
 
 LOGIN_REDIRECT_URL = 'notebook_list'
 LOGOUT_REDIRECT_URL = 'login'
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}
