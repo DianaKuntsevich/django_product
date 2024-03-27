@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'rest_framework',
     'django_filters',
+    'drf_yasg',
 
     "product_app.apps.ProductAppConfig",
     'user.apps.UserConfig',
