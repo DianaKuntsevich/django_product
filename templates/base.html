@@ -21,10 +21,21 @@
         <li><a href="#" class="nav-link px-2">About</a></li>
       </ul>
     
+        {% if user.is_authenticated %}
       <div class="col-md-3 text-end">
-        <button type="button" class="btn btn-outline-primary me-2">Login</button>
-        <a href="{% url 'register' %}" type="button" class="btn btn-primary">Sign-up</a>
+          <span class="me-2">{{ user.username }}</span>
+{#        <a href="{% url 'logout' %}" type="button" class="btn btn-outline-primary me-2">Выйти</a>  #}
+      <form method="post" action="{% url 'logout' %}">
+          {% csrf_token %}
+      <button  type="submit" class="btn btn-outline-primary me-2">Выйти</button>
+      </form>
+      </div>   
+        {% else %}
+            <div class="col-md-3 text-end">
+        <a href="{% url 'login' %}" type="button" class="btn btn-outline-primary me-2">Войти</a>
+        <a href="{% url 'register' %}" type="button" class="btn btn-primary">Зарегестрироваться</a>
       </div>
+        {% endif %}
     </header>
 <div >
 {% block content %}{% endblock %}

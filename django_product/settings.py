@@ -150,4 +150,4 @@ INTERNAL_IPS = [
 ]
 
 LOGIN_REDIRECT_URL = 'notebook_list'
-LOGOUT_REDIRECT_URL = 'notebook_list'
+LOGOUT_REDIRECT_URL = 'login'
