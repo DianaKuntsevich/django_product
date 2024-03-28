@@ -157,6 +157,8 @@ LOGIN_REDIRECT_URL = 'notebook_list'
 LOGOUT_REDIRECT_URL = 'login'
 
 REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 24,
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
     ]
